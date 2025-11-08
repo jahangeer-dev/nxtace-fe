@@ -1,4 +1,3 @@
-// Authentication types
 export interface User {
   id: string;
   email: string;
@@ -25,7 +24,6 @@ export interface AuthResponse {
   message: string;
 }
 
-// Template types
 export interface Template {
   _id: string;
   name: string;
@@ -40,7 +38,6 @@ export interface FavoriteTemplate {
   createdAt: string;
 }
 
-// API Response types
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;
@@ -48,7 +45,6 @@ export interface ApiResponse<T> {
   error?: string;
 }
 
-// Form types
 export interface FormError {
   field: string;
   message: string;

@@ -11,16 +11,13 @@ const TemplatesPage: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
 
     const { data: templates, isLoading, error } = useTemplates();
-    // Load favorites to ensure they're available for the favorite buttons
     useFavorites();
 
-    // Initialize category from URL params on component mount
     useEffect(() => {
         const categoryFromUrl = searchParams.get('category') || '';
         setSelectedCategory(categoryFromUrl);
     }, [searchParams]);
 
-    // Update URL when category changes
     const handleCategoryChange = (category: string) => {
         setSelectedCategory(category);
         if (category) {
@@ -137,7 +134,6 @@ const TemplatesPage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
-            {/* Background Effects */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -167,7 +163,6 @@ const TemplatesPage: React.FC = () => {
                     </p>
                 </motion.div>
 
-                {/* Search and Filter */}
                 <motion.div
                     className="mb-8"
                     initial={{ opacity: 0, y: 20 }}
@@ -212,7 +207,6 @@ const TemplatesPage: React.FC = () => {
                     </div>
                 </motion.div>
 
-                {/* Results Info */}
                 <motion.div
                     className="mb-8"
                     initial={{ opacity: 0 }}

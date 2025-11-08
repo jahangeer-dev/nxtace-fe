@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuthStore, useThemeStore } from '../store';
 import { authApi } from '../services/api';
-import Button from './Button';
 import { Sun, Moon, LogOut, Star, LayoutGrid, Sparkles } from 'lucide-react';
 
 const Header: React.FC = () => {

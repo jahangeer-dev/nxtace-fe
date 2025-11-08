@@ -2,7 +2,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { authApi, templatesApi, favoritesApi } from '../services/api';
 import { useAuthStore, useTemplateStore } from '../store';
 
-// Auth hooks
 export const useLogin = () => {
   const setAuth = useAuthStore(state => state.setAuth);
   
@@ -25,7 +24,6 @@ export const useRegister = () => {
   });
 };
 
-// Templates hooks
 export const useTemplates = () => {
   const setTemplates = useTemplateStore(state => state.setTemplates);
   
@@ -47,7 +45,6 @@ export const useTemplate = (id: string) => {
   });
 };
 
-// Favorites hooks
 export const useFavorites = () => {
   const { isAuthenticated } = useAuthStore();
   const setFavorites = useTemplateStore(state => state.setFavorites);
@@ -71,7 +68,6 @@ export const useAddFavorite = () => {
     mutationFn: favoritesApi.add,
     onSuccess: (_, templateId) => {
       queryClient.invalidateQueries({ queryKey: ['favorites'] });
-      // Find the template and add to store
       const { templates } = useTemplateStore.getState();
       const template = templates.find(t => t._id === templateId);
       if (template) {

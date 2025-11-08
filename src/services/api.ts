@@ -2,16 +2,14 @@ import axios from 'axios';
 import type { LoginCredentials, RegisterCredentials, AuthResponse, Template, ApiResponse } from '../types';
 import { useAuthStore } from '../store';
 
-// Create axios instance
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api',
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // Include cookies in requests
+  withCredentials: true,
 });
 
-// Request interceptor to add auth token
 api.interceptors.request.use((config) => {
   const accessToken = useAuthStore.getState().accessToken;
   if (accessToken) {
@@ -20,7 +18,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Response interceptor for error handling
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -33,7 +30,6 @@ api.interceptors.response.use(
   }
 );
 
-// Auth API
 export const authApi = {
   register: async (credentials: RegisterCredentials): Promise<AuthResponse> => {
     const response = await api.post<AuthResponse>('/auth/register', credentials);
@@ -50,7 +46,6 @@ export const authApi = {
   },
 };
 
-// Templates API
 export const templatesApi = {
   getAll: async (): Promise<Template[]> => {
     const response = await api.get<ApiResponse<Template[]>>('/templates');
@@ -63,7 +58,6 @@ export const templatesApi = {
   },
 };
 
-// Favorites API
 export const favoritesApi = {
   getAll: async (): Promise<Template[]> => {
     const response = await api.get<ApiResponse<Template[]>>('/favorites');
